@@ -1,3 +1,5 @@
+
+
 /* UTILITY CLASSES */
 
 .bold {
@@ -5,21 +7,31 @@
 }
 
 .name-fs {
-    font-size: 2rem;
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+.ppl-details-fs {
+    font-size: .7rem;
+    font-weight: 300;
+    margin-block: 0.3rem;
 }
 
 /* BODY */ 
 
 .body-class {
     padding: 2rem;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(230 230 230 / 35%);
 }
 
 /* TITLE */ 
 
 .main-title {
     text-transform: uppercase;
-    font-size: 1.5em;
+    font-size: 1em;
+    margin: 0 0 2rem 2rem;
+    color: rgb(0 0 0 / 58%);
+    font-weight: 500;
 }
 
 /* MAIN */ 
@@ -27,6 +39,23 @@
 .main-grid {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 18rem);
     grid-auto-columns: 1fr;
+    grid-template-rows: repeat(4, 7rem);
+    grid-auto-rows: 1fr;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: center;
+    border-radius: .5rem;
+    border: 1px solid #2017063d;
+
+}
+.img-style {
+    border-radius: 50%;
+    margin-right: 1rem;
 }
