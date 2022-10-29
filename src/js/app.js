@@ -50,17 +50,22 @@ function modalStepsIn(result) {
     }, 5)
     modalWrapper.innerHTML = `
     <div class="modal-content">
-        <span class="close-button"></span>
-        <img src="${result.picture.medium}" class="img-style">
-        <p class="name-fs">${result.name.first} ${result.name.last}</p>
-        <p class="ppl-details-fs">${result.email}</p>
-        <p class="ppl-details-fs">${result.location.city}</p>
+        <span class="close-button">x</span>
+        <img src="${result.picture.large}" class="img-style-modal">
+        <p class="name-fs-modal">${result.name.first} ${result.name.last}</p>
+        <p class="ppl-details-fs-modal">${result.email}</p>
+        <p class="ppl-details-fs-modal">${result.location.city}</p>
+        <span class="dist-bar"></span>
+        <p class="ppl-details-fs-modal">${result.cell}</p>
+        <p class="ppl-details-fs-modal">${result.location.street.number} ${result.location.street.name}, ${result.location.state} ${result.location.postcode}</p>
+        <p class="ppl-details-fs-modal">Birthday: ${result.dob.date.slice(0,10)}</p>
     </div>
     `;
     main.appendChild(modalWrapper);    
     modalWrapper.addEventListener('click', () => {
         modalWrapper.remove();
     })
+    
 }
 
 

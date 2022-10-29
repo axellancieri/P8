@@ -11,11 +11,13 @@
     font-weight: 600;
     margin-bottom: 0.4rem;
 }
+
 .ppl-details-fs {
     font-size: .7rem;
     font-weight: 300;
     margin-block: 0.3rem;
 }
+
 
 /* BODY */ 
 
@@ -50,14 +52,46 @@
     display: flex;
     align-items: center;
     background-color: white;
-    justify-content: center;
+    justify-content: flex-start;
     border-radius: .5rem;
     border: 1px solid #2017063d;
-
+    cursor: pointer;
+    transform: scale(1);
 }
+.card:hover,
+.card:target,
+.card:focus {
+    transform: scale(1.1);
+    transition: transform .25s ease;
+}
+/*Modal box queries*/
+
+.name-fs-modal {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+.ppl-details-fs-modal {
+    font-size: .7rem;
+    font-weight: 300;
+    margin-block: 0.5rem;
+    color: #766c6c;
+}
+
 .img-style {
     border-radius: 50%;
-    margin-right: 1rem;
+    margin-inline: 1rem;
+}
+
+.img-style-modal {
+    border-radius: 50%;
+    margin-block: 1rem;
+}
+
+.dist-bar{
+    border-top: 1px solid #00000047;
+    width: 15rem;
+    margin-block: 1rem;
 }
 
 /* Modal Box */ 
@@ -78,24 +112,33 @@
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);   
     background-color: white;
-    padding: 1rem 1.5rem;
-    width: 24rem;
+    padding: 1.5rem 2.5rem;;
     border-radius: 0.5rem;
+    
 }
-
+.modal-content:hover,
+.modal-content:target,
+.modal-content:focus,
+.modal-content:active {
+    border: 5px solid rgb(163, 204, 50);
+    transition: border .25s ease;
+}
 .close-button {
-    float: right;
+    align-self: flex-end;
     width: 1.5rem;
     line-height: 1.5rem;
     text-align: center;
     cursor: pointer;
     border-radius: 0.25rem;
-    background-color: lightgray;
+    background-color: #d3d3d33d;
 }
 
 .close-button:hover {
