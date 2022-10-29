@@ -38,13 +38,16 @@ function generateData(data) {
                 <p class="ppl-details-fs">${result.location.city}</p>
                 </div>`;
             main.appendChild(employeeDiv);
-            employeeDiv.addEventListener('click', () => modalStepsIn(result))
+            employeeDiv.addEventListener('click', () => modalStepsIn(result))           
         })
 }
 
 function modalStepsIn(result) {
     const modalWrapper = document.createElement('Div');
-    modalWrapper.classList.add('modal');
+        modalWrapper.classList.add('modal');
+    setTimeout( () => {
+        modalWrapper.classList.add('show-modal');
+    }, 5)
     modalWrapper.innerHTML = `
     <div class="modal-content">
         <span class="close-button"></span>
@@ -54,7 +57,10 @@ function modalStepsIn(result) {
         <p class="ppl-details-fs">${result.location.city}</p>
     </div>
     `;
-    main.appendChild(modalWrapper);
+    main.appendChild(modalWrapper);    
+    modalWrapper.addEventListener('click', () => {
+        modalWrapper.remove();
+    })
 }
 
 

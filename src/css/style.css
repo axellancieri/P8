@@ -63,6 +63,8 @@
 /* Modal Box */ 
 
 .modal {
+    transform-origin: center;
+    transform-box: fill-box;
     position: fixed;
     left: 0;
     top: 0;
@@ -79,7 +81,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);   
     background-color: white;
     padding: 1rem 1.5rem;
     width: 24rem;
@@ -101,8 +103,11 @@
 }
 
 .show-modal {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    transform-origin: center;
+    transform-box: fill-box;
 }
+
