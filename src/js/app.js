@@ -65,10 +65,20 @@ function modalStepsIn(result) {
     modalWrapper.addEventListener('click', () => {
         modalWrapper.remove();
     })
+    window.addEventListener('keydown', (event) => {
+        const keyName = event.key;
+        const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
+        if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' )
+        console.log('forwd')//up n right
+        else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
+            console.log('back')//left and down
+        }
+        
+    })
     
 }
 
 
 
 
- 
+
