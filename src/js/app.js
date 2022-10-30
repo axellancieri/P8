@@ -1,20 +1,23 @@
 const main = document.querySelector('main');
-
+const search = document.querySelector('#directoryUser');
 
 /* FETCH FUNCTIONS */
-    fetch('https://randomuser.me/api/?inc=name,location,email,dob,cell,picture&results=12&noinfo')
+    fetch(`https://randomuser.me/api/?nat=us,gb&inc=name,location,email,dob,cell,picture,nat&results=12&noinfo`)
         .then(response => response.json())
-        .then(data => requestingAPIinfo(data.results))
+        .then(data => gettingAPIinfo(data.results))//randomPplArrays.push(data.results))//console.log(data))
         .catch(error => console.log(`Seems an error is happening, ${error}`))
-
-
-    function requestingAPIinfo(data) {
-        generateData(data);
-    }
-
+    
 
 /* HELPER FUNCTIONS */
+function gettingAPIinfo(data) {
+    generateData(data)
+    gettingNames(data)
+    searchBar(data)
+}
 
+function gettingNames(data) {
+    return data.map(array => `${array.name.first} ${array.name.last}`);; 
+}
 
 /** Not sure about this one below */
 
@@ -25,9 +28,11 @@ const main = document.querySelector('main');
 //       return Promise.reject(new Error(response.statusText));
 //     }
 //   }
-
+const randomPplArrays = [];
+//kake.map(array => `${array.name.first} ${array.name.last}`);
+//.reduce((acc, curr) => [...acc, ...curr], []);
 function generateData(data) {
-        data.map(result => {
+    data.map(result => {
         const employeeDiv = document.createElement('Div'); 
         employeeDiv.classList.add('card');       
             employeeDiv.innerHTML = `
@@ -65,20 +70,35 @@ function modalStepsIn(result) {
     modalWrapper.addEventListener('click', () => {
         modalWrapper.remove();
     })
-    window.addEventListener('keydown', (event) => {
-        const keyName = event.key;
-        const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
-        if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' )
-        console.log('forwd')//up n right
-        else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
-            console.log('back')//left and down
-        }
+
+    /*keyboard listener for modal swapper */
+    // window.addEventListener('keydown', (event) => {
+    //     const keyName = event.key;
+    //     const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
+    //     if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' )
+    //     console.log('forwd')//up n right
+    //     else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
+    //         console.log('back')//left and down
+    //     }
         
-    })
+    // })
     
 }
 
-
-
+/* FILTER */
+function searchBar(data) {
+    const names = gettingNames(data);
+    const realNames = document.querySelectorAll('.card');
+    // search.value = search.value.toUpperCase();
+    search.addEventListener('keyup', () => {
+        names.map(name => {
+            if (name.toUpperCase().includes(search.value.toUpperCase())) {
+                realNames[names.indexOf(name)].style.display = 'flex';
+            } else {
+                realNames[names.indexOf(name)].style.display = 'none';
+            }
+        }
+    )})
+}
 
 
