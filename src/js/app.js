@@ -32,8 +32,7 @@ const randomPplArrays = [];
 //kake.map(array => `${array.name.first} ${array.name.last}`);
 //.reduce((acc, curr) => [...acc, ...curr], []);
 function generateData(data) {
-    randomPplArrays.push(data);
-    data.map((result, index) => {
+    data.map(result => {
         const employeeDiv = document.createElement('Div'); 
         employeeDiv.classList.add('card');       
             employeeDiv.innerHTML = `
@@ -44,12 +43,11 @@ function generateData(data) {
                 <p class="ppl-details-fs">${result.location.city}</p>
                 </div>`;
             main.appendChild(employeeDiv);
-            employeeDiv.addEventListener('click', () => modalStepsIn(data, index));
+            employeeDiv.addEventListener('click', () => modalStepsIn(result))           
         })
-        
 }
 
-function modalStepsIn(data, index) {
+function modalStepsIn(result) {
     const modalWrapper = document.createElement('Div');
         modalWrapper.classList.add('modal');
     setTimeout( () => {
@@ -58,47 +56,34 @@ function modalStepsIn(data, index) {
     modalWrapper.innerHTML = `
     <div class="modal-content">
         <span class="close-button">x</span>
-        <img src="${data[index].picture.large}" class="img-style-modal">
-        <p class="name-fs-modal">${data[index].name.first} ${data[index].name.last}</p>
-        <p class="ppl-details-fs-modal">${data[index].email}</p>
-        <p class="ppl-details-fs-modal">${data[index].location.city}</p>
+        <img src="${result.picture.large}" class="img-style-modal">
+        <p class="name-fs-modal">${result.name.first} ${result.name.last}</p>
+        <p class="ppl-details-fs-modal">${result.email}</p>
+        <p class="ppl-details-fs-modal">${result.location.city}</p>
         <span class="dist-bar"></span>
-        <p class="ppl-details-fs-modal">${data[index].cell}</p>
-        <p class="ppl-details-fs-modal">${data[index].location.street.number} ${data[index].location.street.name}, ${data[index].location.state} ${data[index].location.postcode}</p>
-        <p class="ppl-details-fs-modal">Birthday: ${data[index].dob.date.slice(0,10)}</p>
+        <p class="ppl-details-fs-modal">${result.cell}</p>
+        <p class="ppl-details-fs-modal">${result.location.street.number} ${result.location.street.name}, ${result.location.state} ${result.location.postcode}</p>
+        <p class="ppl-details-fs-modal">Birthday: ${result.dob.date.slice(0,10)}</p>
     </div>
     `;
     main.appendChild(modalWrapper);    
     modalWrapper.addEventListener('click', () => {
-        modalWrapper.classList.remove('show-modal');
-        setTimeout( () => {
-            modalWrapper.remove();
-        }, 300)
-    })   
-}
+        modalWrapper.remove();
+    })
 
     /*keyboard listener for modal swapper */
-    window.addEventListener('keydown', (event) => {
-        const keyName = event.key;
-        const modalWrappah = document.querySelector('.modal');
-        const checkVisib = getComputedStyle(modalWrappah).getPropertyValue('visibility');
-        if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' && index >= 11) {
-            modalStepsIn(data, index - 11);
-            console.log('1')
-        } else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' && index <= 0) {
-            modalStepsIn(data, index + 11);
-            console.log('1')
-        } else if(keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible') {           
-            modalStepsIn(data, index + 1);
-            console.log('1')
-        } else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible') {
-            modalStepsIn(data, index - 1);
-            console.log('1')
-            
-        }
-
+    // window.addEventListener('keydown', (event) => {
+    //     const keyName = event.key;
+    //     const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
+    //     if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' )
+    //     console.log('forwd')//up n right
+    //     else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
+    //         console.log('back')//left and down
+    //     }
         
-    })
+    // })
+    
+}
 
 /* FILTER */
 function searchBar(data) {
@@ -115,3 +100,5 @@ function searchBar(data) {
         }
     )})
 }
+
+
