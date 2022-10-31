@@ -74,7 +74,11 @@ main.appendChild(modalWrapper);
             return modalWrapper.innerHTML = getcardText(data, index += 1); 
         } else if (e.target.closest('.arrow-left')) {
             return modalWrapper.innerHTML = getcardText(data, index -= 1); 
-        } else if (e.target.closest('.modal')) {
+        } else if (e.target.closest('.close-button') ) {
+            modalWrapper.remove();
+        } else if (e.target.closest('.modal-content')) {
+            return e.target.style.borderColor = '#7b7bff'; 
+        } else if ( e.target.closest('.modal')) {
             modalWrapper.remove();
         }
     })
