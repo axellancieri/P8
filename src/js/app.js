@@ -4,7 +4,7 @@ const search = document.querySelector('#directoryUser');
 /* FETCH FUNCTIONS */
     fetch(`https://randomuser.me/api/?nat=us,gb&inc=name,location,email,dob,cell,picture,nat&results=12&noinfo`)
         .then(response => response.json())
-        .then(data => gettingAPIinfo(data.results))//randomPplArrays.push(data.results))//console.log(data))
+        .then(data => gettingAPIinfo(data.results))
         .catch(error => console.log(`Seems an error is happening, ${error}`))
     
 
@@ -19,18 +19,6 @@ function gettingNames(data) {
     return data.map(array => `${array.name.first} ${array.name.last}`);; 
 }
 
-/** Not sure about this one below */
-
-// function checkStatus(response) {
-//     if(response.ok) {
-//       return Promise.resolve(response);
-//     } else {
-//       return Promise.reject(new Error(response.statusText));
-//     }
-//   }
-const randomPplArrays = [];
-//kake.map(array => `${array.name.first} ${array.name.last}`);
-//.reduce((acc, curr) => [...acc, ...curr], []);
 function generateData(data) {
     data.map((result, index) => {
         const employeeDiv = document.createElement('Div'); 
@@ -65,30 +53,54 @@ function modalStepsIn(data, index) {
             <p class="ppl-details-fs-modal">${data[index].location.street.number} ${data[index].location.street.name}, ${data[index].location.state} ${data[index].location.postcode}</p>
             <p class="ppl-details-fs-modal">Birthday: ${data[index].dob.date.slice(0,10)}</p>
         </div>
+            <span class="arrow-right">
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+            <span class="arrow-left">
+                <i class="fa-solid fa-arrow-left"></i>
+            </span>
         `;
         return gotit
     }
 
     modalWrapper.innerHTML = getcardText(data, index);
 main.appendChild(modalWrapper);
-
-    modalWrapper.addEventListener('click', () => {
-        modalWrapper.remove();
+    modalWrapper.addEventListener('click', (e) => {
+        if (e.target.closest('.arrow-right') && index >= 11) {
+            return modalWrapper.innerHTML = getcardText(data, index = 0);            
+        } else if(e.target.closest('.arrow-left') && index <= 0) {
+            return modalWrapper.innerHTML = getcardText(data, index = 11); 
+        } else if (e.target.closest('.arrow-right')) {
+            return modalWrapper.innerHTML = getcardText(data, index += 1); 
+        } else if (e.target.closest('.arrow-left')) {
+            return modalWrapper.innerHTML = getcardText(data, index -= 1); 
+        } else if (e.target.closest('.modal')) {
+            modalWrapper.remove();
+        }
     })
+/*keyboard listener for modal swapper */
     window.addEventListener('keydown', (event) => {
-    const keyName = event.key;
-    const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
-    if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' ) {
-        return modalWrapper.innerHTML = getcardText(data, index += 1);
-        console.log('1');//console.log('forwd')//up n right
-    } else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
-        return modalWrapper.innerHTML = getcardText(data, index -= 1);
-        console.log('back');//left and down
-    }
-})
+        const keyName = event.key;
+        const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
+
+        if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' && index >= 11 ) {
+            return modalWrapper.innerHTML = getcardText(data, index = 0);    
+        } else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' && index <= 0 ) {
+            return modalWrapper.innerHTML = getcardText(data, index = 11); 
+        } else if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' ) {
+            return modalWrapper.innerHTML = getcardText(data, index += 1);    
+        } else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
+            return modalWrapper.innerHTML = getcardText(data, index -= 1); 
+        }
+    })
+    // rightArrow.addEventListener('click', (event) => {
+        // if(event === rightArrow){
+            // console.log('xd')
+        // }
+    // })
 }
 
-    /*keyboard listener for modal swapper */ 
+
 
 
 

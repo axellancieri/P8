@@ -107,8 +107,6 @@
 /* Modal Box */ 
 
 .modal {
-    transform-origin: center;
-    transform-box: fill-box;
     position: fixed;
     left: 0;
     top: 0;
@@ -155,12 +153,45 @@
     background-color: darkgray;
 }
 
+.arrow-right {
+    right: 30rem;
+    position: absolute;
+    bottom: 12rem;
+    font-size: 4rem;
+    color: black;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10%;
+
+}
+
+.arrow-left {
+    left: 30rem;
+    position: absolute;
+    bottom: 12rem;
+    font-size: 4rem;
+    color: black;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10%;
+}
+
+.arrow-left:hover,
+.arrow-right:hover,
+.arrow-left:focus,
+.arrow-right:focus,
+.arrow-left:active,
+.arrow-right:active,
+.arrow-left:target,
+.arrow-right:target {
+    border: 5px solid rgb(23 203 160);
+    transition: border .25s ease;
+}
+
 .show-modal {
     visibility: visible;
     opacity: 1;
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-    transform-origin: center;
-    transform-box: fill-box;
 }
 
