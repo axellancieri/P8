@@ -52,37 +52,41 @@ function modalStepsIn(data, index) {
     setTimeout( () => {
         modalWrapper.classList.add('show-modal');
     }, 5)
-    modalWrapper.innerHTML = `
-    <div class="modal-content">
-        <span class="close-button">x</span>
-        <img src="${data[index].picture.large}" class="img-style-modal">
-        <p class="name-fs-modal">${data[index].name.first} ${data[index].name.last}</p>
-        <p class="ppl-details-fs-modal">${data[index].email}</p>
-        <p class="ppl-details-fs-modal">${data[index].location.city}</p>
-        <span class="dist-bar"></span>
-        <p class="ppl-details-fs-modal">${data[index].cell}</p>
-        <p class="ppl-details-fs-modal">${data[index].location.street.number} ${data[index].location.street.name}, ${data[index].location.state} ${data[index].location.postcode}</p>
-        <p class="ppl-details-fs-modal">Birthday: ${data[index].dob.date.slice(0,10)}</p>
-    </div>
-    `;
+    const getcardText = function(data, index) {
+        let gotit = `
+        <div class="modal-content">
+            <span class="close-button">x</span>
+            <img src="${data[index].picture.large}" class="img-style-modal">
+            <p class="name-fs-modal">${data[index].name.first} ${data[index].name.last}</p>
+            <p class="ppl-details-fs-modal">${data[index].email}</p>
+            <p class="ppl-details-fs-modal">${data[index].location.city}</p>
+            <span class="dist-bar"></span>
+            <p class="ppl-details-fs-modal">${data[index].cell}</p>
+            <p class="ppl-details-fs-modal">${data[index].location.street.number} ${data[index].location.street.name}, ${data[index].location.state} ${data[index].location.postcode}</p>
+            <p class="ppl-details-fs-modal">Birthday: ${data[index].dob.date.slice(0,10)}</p>
+        </div>
+        `;
+        return gotit
+    }
+
+    modalWrapper.innerHTML = getcardText(data, index);
 main.appendChild(modalWrapper);
 
     modalWrapper.addEventListener('click', () => {
         modalWrapper.remove();
     })
-window.addEventListener('keydown', (event) => {
+    window.addEventListener('keydown', (event) => {
     const keyName = event.key;
     const checkVisib = getComputedStyle(modalWrapper).getPropertyValue('visibility');
-    if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' ){
-        modalStepsIn(data, index + 1)
+    if (keyName === 'ArrowRight' | keyName === 'ArrowUp' && checkVisib === 'visible' ) {
+        return modalWrapper.innerHTML = getcardText(data, index += 1);
         console.log('1');//console.log('forwd')//up n right
     } else if(keyName === 'ArrowLeft' | keyName === 'ArrowDown' && checkVisib === 'visible' ) {
-        console.log('back')//left and down
+        return modalWrapper.innerHTML = getcardText(data, index -= 1);
+        console.log('back');//left and down
     }
 })
 }
-
-
 
     /*keyboard listener for modal swapper */ 
 
