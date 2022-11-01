@@ -24,7 +24,7 @@ function generateData(data) {
         const employeeDiv = document.createElement('Div'); 
         employeeDiv.classList.add('card');       
             employeeDiv.innerHTML = `
-                <img src="${result.picture.medium}" class="img-style">
+                <img src="${result.picture.large}" class="img-style">
                 <div>
                 <p class="name-fs">${result.name.first} ${result.name.last}</p>
                 <p class="ppl-details-fs">${result.email}</p>
