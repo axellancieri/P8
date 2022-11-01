@@ -41,6 +41,8 @@ function modalStepsIn(data, index) {
         modalWrapper.classList.add('show-modal');
     }, 5)
     const getcardText = function(data, index) {
+        const getDataRight = data[index].dob.date.slice(0, 10).split('-');
+                       
         let gotit = `
         <div class="modal-content">
             <span class="close-button">x</span>
@@ -51,7 +53,7 @@ function modalStepsIn(data, index) {
             <span class="dist-bar"></span>
             <p class="ppl-details-fs-modal">${data[index].cell}</p>
             <p class="ppl-details-fs-modal">${data[index].location.street.number} ${data[index].location.street.name}, ${data[index].location.state} ${data[index].location.postcode}</p>
-            <p class="ppl-details-fs-modal">Birthday: ${data[index].dob.date.slice(0,10)}</p>
+            <p class="ppl-details-fs-modal">Birthday: ${getDataRight[1]}-${getDataRight[2]}-${getDataRight[0]}</p>
         </div>
             <span class="arrow-right">
                 <i class="fa-solid fa-arrow-right"></i>
