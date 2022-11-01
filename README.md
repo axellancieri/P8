@@ -1,3 +1,0 @@
-- On the mockups given to us it  only show s1 screen size, is it ok if on my grid layout the rows are auto and will fully expand within the given witdh of the container so it can vary from 12 rows on mobile siize to like 5-6 rows or more if you have a crazy big monitor.
-
-My point is, on decent desktop width it'll have 3-4 rows which looks nice but I want to know if I should hard cap it at 3 rows on max width or if it's ok
